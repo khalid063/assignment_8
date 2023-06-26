@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'main_screen.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -12,28 +14,14 @@ class MyApp extends StatelessWidget{
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: "Assignment 8",
-      theme: ThemeData(primarySwatch: Colors.green),
-      home: HomeScreen(),
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: const MainScreen(),
     );
   }
 
 }
 
-class HomeScreen extends StatefulWidget{
-  @override
-  State<StatefulWidget> createState() {
-    return HomeScreenUI();
-  }
 
-}
 
-class HomeScreenUI extends State<HomeScreen>{
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Assignment 8 work start"),
-      ),
-    );
-  }
-}
+
+
