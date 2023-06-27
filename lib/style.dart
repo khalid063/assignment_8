@@ -14,3 +14,9 @@ InputDecoration myInputDecoretion(label){
   );
 }
 
+TextStyle myTextStyle(){
+  return TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.w500
+  );
+}
