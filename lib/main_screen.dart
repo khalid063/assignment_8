@@ -56,13 +56,14 @@ class _MainScreenState extends State<MainScreen> {
                 actions: [
                   TextButton(onPressed: (){
                     // _mySnackBar("Delete Succes", context);
-                    todos.add(Task(_titleInputController.text.trim(), _descriptionInputController.text.trim(), _daysRequiredInputController.text.trim()));
-                    setState(() {});
-                    Navigator.of(context).pop();
-                    print(todos[0].title);
-                    _titleInputController.clear();
-                    _descriptionInputController.clear();
-                    _daysRequiredInputController.clear();
+                    if(_titleInputController.text.trim().isNotEmpty && _descriptionInputController.text.trim().isNotEmpty && _daysRequiredInputController.text.trim().isNotEmpty){
+                      todos.add(Task(_titleInputController.text.trim(), _descriptionInputController.text.trim(), _daysRequiredInputController.text.trim()));
+                      setState(() {});
+                      Navigator.of(context).pop();
+                      _titleInputController.clear();
+                      _descriptionInputController.clear();
+                      _daysRequiredInputController.clear();
+                    }
                   }, child: Text("Save")),
                 ],
               )
@@ -75,7 +76,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Tast Management"),
+        title: Text("Task Management"),
         centerTitle: true,
       ),
       body: ListView.builder(
@@ -89,20 +90,26 @@ class _MainScreenState extends State<MainScreen> {
                       (BuildContext context) {
                     return Container(
                       height: 200,
+                      width: double.infinity,
                       color: Colors.amber,
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
                         child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          mainAxisSize: MainAxisSize.min,
+                          //mainAxisAlignment: MainAxisAlignment.end,
+                          // mainAxisSize: MainAxisSize.min,
                           children: <Widget>[
                             Text("Task Details", style: myTextStyle(),),
-                            Text("${todos[index].description}"),
+                            SizedBox(height: 10,),
+                            Text("Title : ${todos[index].title}"),
+                            Text("Description : ${todos[index].description}"),
+                            Text("Day Required : ${todos[index].daysRequired}"),
+                            SizedBox(height: 20,),
                             ElevatedButton(
                                 child: const Text('Delete'),
                                 onPressed: () {
                                   setState(() {});
                                   Navigator.pop(context);
+                                  todos.removeAt(index);
                                 })
                           ],
                         ),
